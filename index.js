@@ -29,27 +29,12 @@ Object.assign(DBManager.prototype, {
         return this._eventEmitter.emit.apply(this._eventEmitter, arguments);
     },
     /**
-     * @memberOf DBManager.prototype
-     * @listens init mongo instance is given
-     * @function
-     * @param {object} mongoInstance
-     */
-    init(mongo) {
-        this.mongo = mongo;
-        this.ObjectID = this.mongo.ObjectID;
-        this.ObjectId = this.ObjectID;
-        this.db = mongo.db;
-        this.params.onReady && this.params.onReady({
-            db: mongo.db
-        });
-    },
-    /**
-     * Instantiates a dbManager object bypassing a MongoManager instance. Mostly for testing purposes
+     * Instantiates a dbManager object 
      * @memberOf DBManager.prototype
      * @param {object} _db The mongo db instance or mock
      * @param {object} mongoLib The mongo library
      */
-    _initTest (_db, mongoLib) {
+    init (_db, mongoLib) {
         this.db=_db;
         this.ObjectID = mongoLib ? mongoLib.ObjectId : undefined;
         this.ObjectId = this.ObjectID;
